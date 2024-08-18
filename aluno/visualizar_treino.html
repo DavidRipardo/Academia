@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Ver meu treino</title>
+   <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+   <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+   <div class="wrapper">
+      <aside id="sidebar">
+         <div class="d-flex">
+            <button class="toggle-btn" type="button">
+               <i class="lni lni-menu"></i>
+            </button>
+            <div class="sidebar-logo"> Área do Aluno </div>
+         </div>
+         <ul class="sidebar-nav">
+            <li class="sidebar-item">
+               <a href="listagem_treinos.html" class="sidebar-link">
+                  <i class="lni lni-user"></i>
+                  <span>Meus treinos</span>
+               </a>
+            </li>
+            <li class="sidebar-item">
+               <a href="minha ficha.html" class="sidebar-link">
+                  <i class="lni lni-agenda"></i>
+                  <span>Minha ficha</span>
+               </a>
+            </li>
+            <div class="sidebar-footer">
+               <a href="#" class="sidebar-link">
+                  <i class="lni lni-exit"></i>
+                  <span>Logout</span>
+               </a>
+            </div>
+      </aside>
+      <div class="main p-3">
+         <header>
+            <div class="logo">
+               <img src="logo.png" alt="">
+            </div>
+         </header>
+         <section class="container">
+            <h2>Detalhes do Treino</h2>
+            <button class="btn btn-secondary" onclick="voltar()">Voltar a lista</button>
+            <div class="training-item">
+               <label>Nome do Treino:</label>
+               <p id="nome-treino">Treino de Exemplo</p>
+            </div>
+            <div class="training-item">
+               <label id="na">Data:</label>
+               <p id="data-treino">__/__/____</p>
+            </div>
+            <div class="training-item">
+               <label>Nome do Personal:</label>
+               <p id="nome-personal">Nome do Personal</p>
+            </div>
+            <div class="training-item">
+               <label id="na">Objetivo do Treino:</label>
+               <p id="objetivo-treino">Objetivo do Treino</p>
+            </div>
+            <div class="training-item">
+               <label>Aquecimento:</label>
+               <div id="aquecimento-list">
+                  <p><span>Duração: </span><span class="aquecimento-duracao">0</span> minutos</p>
+                  <p><span>Atividade: </span><span class="aquecimento-exercicio">Atividade de aquecimento</span></p>
+               </div>
+            </div>
+            <div class="training-item">
+               <h2 id="title-exercise">Detalhes do Treino</h2>
+               <div class="exercise-list" id="exercise-list">
+                  <!-- Exercícios serão inseridos aqui dinamicamente -->
+               </div>
+            </div>
+         </section>
+      </div> <!-- MAIN-P3-->
+      <script src="main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerenciamento de Alunos</title>
+  <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <script>
+    AOS.init();
+  </script>
+  <div class="wrapper">
+    <aside id="sidebar">
+      <div class="d-flex">
+        <button class="toggle-btn" type="button">
+          <i class="lni lni-menu"></i>
+        </button>
+        <div class="sidebar-logo">
+          <a href="#">Área do personal</a>
+        </div>
+      </div>
+      <ul class="sidebar-nav">
+        <li class="sidebar-item">
+          <a href="home.html" class="sidebar-link">
+            <i class="lni lni-user"></i>
+            <span>Alunos</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="treinamentos.html" class="sidebar-link">
+            <i class="lni lni-agenda"></i>
+            <span>Treinamentos</span>
+          </a>
+        </li>
+
+
+        <div class="sidebar-footer">
+          <a href="#" class="sidebar-link">
+            <i class="lni lni-exit"></i>
+            <span>Logout</span>
+          </a>
+        </div>
+    </aside>
+    <div class="main p-3">
+      <header>
+        <div class="logo">
+          <img src="logo.png" alt="">
+        </div>
+      </header>
+      <section class="student-list">
+        <div class="topo" data-aos="zoom-in-down">
+          <h1 class="titulo">Alunos</h1>
+          <div class="search-bar">
+            <input type="text" id="search-input" class="form-control" placeholder="Pesquisar por nome...">
+          </div>
+          <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalAluno">Novo Aluno</button>
+        </div>
+        <!-- Os alunos serão listados aqui -->
+      </section>
+
+      <!-- Modal para cadastrar/editar aluno -->
+      <div class="modal fade" id="modalAluno" tabindex="-1" aria-labelledby="modalAlunoLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalAlunoLabel">Novo Aluno</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form id="formAluno" action="/addAluno" method="POST">
+                <input type="hidden" id="aluno-id" name="id">
+                <div class="mb-6">
+                  <label for="foto-aluno" class="form-label">Foto do Aluno</label>
+                  <input type="file" class="form-control" id="foto-aluno" name="foto" required>
+                </div>
+                <div class="mb-6">
+                  <label for="nome-aluno" class="form-label">Nome do Aluno</label>
+                  <input type="text" class="form-control" id="nome-aluno" name="nome" required>
+                </div>
+                <div class="mb-6">
+                  <label for="telefone-aluno" class="form-label">Telefone</label>
+                  <input type="text" class="form-control" id="telefone-aluno" name="telefone" required>
+                </div>
+                <div class="mb-6">
+                  <label for="email-aluno" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="email-aluno" name="email" required>
+                </div>
+                <div class="mb-6">
+                  <label for="senha-aluno" class="form-label">Senha</label>
+                  <input type="password" class="form-control" id="senha-aluno" name="senha" required>
+                </div>
+                <div class="mb-6">
+                  <label for="treino-aluno" class="form-label">Treino</label>
+                  <select onfocus="this.size=3;" onblur="this.size=0;" onchange="this.size=1; this.blur()" class="form-select" id="treino-aluno" name="treino" required>
+                    <option value="" selected disabled>Selecione um treino</option>
+                    <option value="treino1">Treino 1</option>
+                    <option value="treino2">Treino 2</option>
+                    <!-- Adicione mais opções de treino aqui -->
+                  </select>
+                </div>
+                <label for="data-matricula">Data</label>
+                <input type="text" id="data-matricula" name="data" >
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Fechar</button>
+                  <button type="submit" class="btnadd" onclick="addStudentToList">Salvar</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal para adicionar dicas -->
+      <div class="modal fade" id="modalDicas" tabindex="-1" aria-labelledby="modalDicasLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalDicasLabel">Adicionar Dicas</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form id="formDicas">
+                <div class="mb-3">
+                  <label for="dica-nome" class="form-label">Nome da Dica</label>
+                  <input type="text" class="form-control" id="dica-nome" name="nome" required>
+                </div>
+                <div class="mb-3">
+                  <label for="dica-texto" class="form-label">Dica</label>
+                  <textarea class="form-control" id="dica-texto" name="dica" rows="3" required></textarea>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                  <button type="button" id="addDicaBtn" class="btn btn-primary">Adicionar</button>
+                </div>
+              </form>
+              <hr>
+              <h5>Dicas adicionadas</h5>
+              <select class="form-select" id="selectDicas" size="5">
+                <!-- As dicas serão listadas aqui -->
+              </select>
+              <div class="d-grid gap-2 mt-3">
+                <button type="button" id="deleteDicaBtn" class="btn btn-danger">Apagar Dica Selecionada</button>
+              </div>
+              <hr>
+              <h5>Conteúdo da Dica</h5>
+              <textarea class="form-control" id="conteudoDica" rows="3" readonly></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal para visualizar/criar/editar ficha de avaliação -->
+      <div class="modal fade" id="modalFicha" tabindex="-1" aria-labelledby="modalFichaLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalFichaLabel">Ficha de Avaliação</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form class="ficha" id="formFicha">
+                <input type="hidden" id="aluno-id-ficha" value="">
+                <div class="mb-7">
+                  <label for="peso" class="form-label">Peso Corporal (kg)</label>
+                  <input type="text" class="form-control" id="peso" name="peso">
+                </div>
+                <div class="mb-7">
+                  <label for="altura" class="form-label">Altura (cm)</label>
+                  <input type="text" class="form-control" id="altura" name="altura">
+                </div>
+                <div class="mb-7">
+                  <label for="imc" class="form-label">IMC</label>
+                  <input type="text" class="form-control" id="imc" name="imc">
+                </div>
+                <div class="mb-7">
+                  <label for="gordura" class="form-label">Porcentagem de Gordura</label>
+                  <input type="text" class="form-control" id="gordura" name="gordura">
+                </div>
+                <div class="mb-7">
+                  <label for="circunferencia" class="form-label">Circunferência Corporal</label>
+                  <input type="text" class="form-control" id="circunferencia" name="circunferencia">
+                </div>
+                <div class="mb-7">
+                  <label for="antebraco" class="form-label">Medidas Antebraço (cm)</label>
+                  <input type="text" class="form-control" id="antebraco" name="antebraco">
+                </div>
+                <div class="mb-7">
+                  <label for="biceps" class="form-label">Medidas Bíceps (cm)</label>
+                  <input type="text" class="form-control" id="biceps" name="biceps">
+                </div>
+                <div class="mb-7">
+                  <label for="peito" class="form-label">Medidas Peito (cm)</label>
+                  <input type="text" class="form-control" id="peito" name="peito">
+                </div>
+                <div class="mb-7">
+                  <label for="cintura" class="form-label">Medidas Cintura (cm)</label>
+                  <input type="text" class="form-control" id="cintura" name="cintura">
+                </div>
+                <div class="mb-7">
+                  <label for="gluteo" class="form-label">Medidas Glúteo (cm)</label>
+                  <input type="text" class="form-control" id="gluteo" name="gluteo">
+                </div>
+                <div class="mb-7">
+                  <label for="quadriceps" class="form-label">Medidas Quadríceps (cm)</label>
+                  <input type="text" class="form-control" id="quadriceps" name="quadriceps">
+                </div>
+                <div class="mb-7">
+                  <label for="panturrilhas" class="form-label">Medidas Panturrilhas (cm)</label>
+                  <input type="text" class="form-control" id="panturrilhas" name="panturrilhas">
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+              <button type="button" class="btn btn-dark" id="editarFicha">Editar</button>
+              <button type="button" class="save" id="salvarFicha">Salvar</button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const formDicas = document.getElementById('formDicas');
+            const dicaNome = document.getElementById('dica-nome');
+            const dicaTexto = document.getElementById('dica-texto');
+            const addDicaBtn = document.getElementById('addDicaBtn');
+            const selectDicas = document.getElementById('selectDicas');
+            const deleteDicaBtn = document.getElementById('deleteDicaBtn');
+            const conteudoDica = document.getElementById('conteudoDica');
+            
+            let dicas = [];
+        
+            function renderDicas() {
+                selectDicas.innerHTML = '';
+                dicas.forEach((dica, index) => {
+                    const option = document.createElement('option');
+                    option.value = index;
+                    option.textContent = dica.nome;
+                    selectDicas.appendChild(option);
+                });
+            }
+        
+            addDicaBtn.addEventListener('click', function () {
+                const nome = dicaNome.value.trim();
+                const texto = dicaTexto.value.trim();
+                if (nome && texto) {
+                    dicas.push({ nome, texto });
+                    renderDicas();
+                    formDicas.reset();
+                }
+            });
+        
+            selectDicas.addEventListener('change', function () {
+                const selectedIndex = selectDicas.selectedIndex;
+                if (selectedIndex >= 0) {
+                    conteudoDica.value = dicas[selectedIndex].texto;
+                } else {
+                    conteudoDica.value = '';
+                }
+            });
+        
+            deleteDicaBtn.addEventListener('click', function () {
+                const selectedIndex = selectDicas.selectedIndex;
+                if (selectedIndex >= 0) {
+                    dicas.splice(selectedIndex, 1);
+                    renderDicas();
+                    conteudoDica.value = '';
+                }
+            });
+        
+            renderDicas();
+        });
+      </script>
+
+    </div> <!-- MAIN-P3-->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="main.js"></script>
+  </div>
+</body>
+
+</html>

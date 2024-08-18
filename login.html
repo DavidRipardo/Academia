@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css" />
+    <script
+      src="https://kit.fontawesome.com/cf6fa412bd.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <img class="wave" src="img/login.img.jpg"">
+    <div class="containe">
+      <div class="img">
+        <img src="" />
+      </div>
+      <div class="login-content">
+        <div class="container">
+          <div class="buttonsForm">
+            <div class="btnColor"></div>
+            <button id="btnaluno">Aluno</button>
+            <button id="btnpersonal">Personal</button>
+          </div>
+
+          <form id="aluno">
+            <input type="text" placeholder="Email" required />
+            <i class="fas fa-envelope iEmail"></i>
+            <input type="password" placeholder="Password" required />
+            <i class="fas fa-lock iPassword"></i>
+            <div class="divCheck">
+              <input type="checkbox" />
+              <span>Lembrar me a senha</span>
+            </div>
+            <button type="submit">LOGIN</button>
+
+            <a class="adm" href="Admin/login.html">Área do Administrador</a>
+          </form>
+
+          <form id="personal">
+            <input type="text" placeholder="Email" required />
+            <i class="fas fa-envelope iEmail"></i>
+            <input type="password" placeholder="Password" required />
+            <i class="fas fa-lock iPassword"></i>
+            <input type="Key" placeholder="Key acees" required />
+            <i class="fas fa-key iPassword2"></i>
+
+            <button type="submit">LOGIN</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var formaluno = document.querySelector("#aluno");
+      var formpersonal = document.querySelector("#personal");
+      var btnColor = document.querySelector(".btnColor");
+
+      document.querySelector("#btnaluno").addEventListener("click", () => {
+        formaluno.style.left = "25px";
+        formpersonal.style.left = "450px";
+        btnColor.style.left = "0px";
+      });
+
+      document.querySelector("#btnpersonal").addEventListener("click", () => {
+        formaluno.style.left = "-450px";
+        formpersonal.style.left = "25px";
+        btnColor.style.left = "110px";
+      });
+    </script>
+  </body>
+</html>

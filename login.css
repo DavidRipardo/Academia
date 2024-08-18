@@ -1,0 +1,236 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&family=Roboto:wght@100;300;400;500;700;900&family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  scrollbar-width: none;
+}
+
+body {
+  background: linear-gradient(to right, #2c2c2c 20%, #000, #002702 );
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wave {
+  background:  #02ab08;
+  width: 50%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  z-index: -1;
+  border-top-right-radius: 200px;
+  border-bottom-right-radius: 200px;
+}
+
+.containe {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 7rem;
+  padding: 0 2rem;
+}
+
+.img {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 250px;
+  margin-left: 199px;
+}
+
+.login-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  margin-left: -20px;
+}
+
+.container {
+  background-color: whitesmoke;
+  padding: 6px;
+  width: 350px;
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  left: 10%;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 0 20px 0 darkgrey;
+}
+
+form {
+  position: absolute;
+  margin-top: 80px;
+  transition: 0.5s;
+  width: 300px;
+  height: 400px;
+}
+
+.buttonsForm {
+  margin-top: 40px;
+  position: relative;
+  border-radius: 30px;
+  box-shadow: 0 0 7px 0 #02ab08;
+}
+
+.buttonsForm button {
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  position: relative;
+  padding: 10px 29px;
+}
+.buttonsForm button:focus {
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  position: relative;
+  padding: 10px 29px;
+  color: #f3f0f0;
+}
+
+.btnColor {
+  position: absolute;
+  width: 108px;
+  height: 100%;
+  background: linear-gradient(to right, #02ab08, #f3f0f0);
+  border-radius: 30px;
+  transition: 0.3s;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="key"] {
+  border: none;
+  margin-top: 40px;
+  border-radius: 60px;
+  padding: 10px 15px 10px 40px;
+  outline: none;
+  width: 100%;
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="key"]:focus {
+  border-color: #02ab08;
+  padding-top: 20px;
+  box-shadow: 0 0 5px 0 #02ab08;
+}
+
+input[type="text"]:focus::placeholder,
+input[type="text"]:not(:placeholder-shown)::placeholder,
+input[type="password"]:focus::placeholder,
+input[type="password"]:not(:placeholder-shown)::placeholder,
+input[type="key"]:focus::placeholder,
+input[type="key"]:not(:placeholder-shown)::placeholder {
+  color: #02ab08;
+  transform: translateY(-20px);
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+button[type="submit"] {
+  background: #02ab08;
+  color: white;
+  border-radius: 30px;
+  width: 100%;
+  justify-content: center;
+  border: none;
+  outline: none;
+  padding: 8px 0 8px 0px;
+  font-size: 15px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.adm {
+  background: #02ab08;
+  color: white;
+  border-radius: 30px;
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 8px 50px 8px 50px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+a{
+  outline: none;
+  text-decoration: none;
+  color: #fff;
+}
+.divCheck {
+  margin: 10px 0 0 -30px;
+  width: 80%;
+  font-size: 13px;
+}
+
+#aluno {
+  left: 25px;
+}
+
+#personal {
+  left: 450px;
+}
+
+i {
+  position: absolute;
+  left: 0;
+  padding: 10px 10px;
+}
+
+.iEmail {
+  top: 40px;
+}
+
+.iPassword {
+  top: 114px;
+}
+
+.iPassword2 {
+  top: 190px;
+}
+
+input:focus ~ i {
+  color: #02ab08;
+}
+
+input[type="text"]:focus + i,
+input[type="password"]:focus + i, 
+input[type="key"]:focus + i {
+  transform: translateY(10px); /* Ajuste o valor conforme necessário */
+  transition: transform 0.3s ease;
+}
+input[type="password"] + i,
+input[type="password"] + i,
+input[type="Key"] + i {
+  transform: translateY(10px);
+}
+
+option:nth-child(1):hover{
+  background: green;
+}
+
+option:nth-child(2):hover{
+  background: green;
+}
+
+option:nth-child(3):hover{
+  background: green;
+}
+
+
+
